@@ -22,7 +22,7 @@ Client - Network - Server
 - Router: A networking device that forwards data packets between computer networks. They know where to send your packets on the internet
 - Switch: Takes a packet and send it to the correct server / client on your network
 
-![IT Terminology](assets/it-terminology.png)
+![IT Terminology](assets/7-it-terminology.png)
 
 ### Traditionally, how to build infrastructure
 - Data store in Home or Garage
