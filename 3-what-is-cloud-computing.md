@@ -214,3 +214,23 @@ Client - Network - Server
     - Elastic Beanstalk (Platform as a Service)
     - Lambda (Function as a Service)
     - Rekognition (Software as a Service)
+
+
+## 12. Tour of the Console and Service of AWS
+
+Some services will be global (Route 53, etc) and most service will have Region for you to choose.
+
+Some Region will not have some services
+
+## 13. Shared Responsibility Model & AWS Acceptable
+
+### Shared Responsbility Model diagram
+
+![Shared Responsibility Model Diagram](assets/13-shared-responsibility-model-diagram.png)
+
+### AWS Acceptable Use Policy
+
+- No Illegal, Harmful, or Offensive Use or Content
+- No Security Violations
+- No Network Abuse
+- No E-Mail or Other Message Abuse
