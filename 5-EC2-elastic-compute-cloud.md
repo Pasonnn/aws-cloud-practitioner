@@ -146,19 +146,94 @@
 
 ## 40. SSH Overview
 
+### SSH Summary Table
+![SSH Summary Table](assets/40-ssh-summary-table.png)
+
+### Which Lectures to Watch
+- Mac / Linux:
+    - SSH on Mac/Linux lecture
+- Windows:
+    - Putty Lecture
+    - If Windows 10: SSH on Windows 10 lecture
+- All:
+    - EC2 Instance Connect lecture
+### SSH troubleshooting
+- Students have the most problems with SSH
+- If things do not work...
+    - 1. Re-watch the lecture. You may have missed something
+    - 2. Read the troubleshooting guide
+    - 3. Try EC2 Instance Connect
+- If one method works (SSH, Putty or EC2 Instance Connect) you are good
+- If no method works, that is okay, the course won't use SSH much
+
 ## 41. How to SSH using Linux or Mac
 
+### How to SSH into your EC2 instance
+- We will learn how to SSH into your EC2 instance using Linux / Mac
+- SSH is one of the most important function. It allows you to control a remote machine, all using the command line
+
+***This is a lab tutorial lesson***
+
+
 ## 42. How to SSH using Windows
+***This is a lab tutorial lesson***
 
 ## 43. How to SSH using Windows 10
+***This is a lab tutorial lesson***
 
 ## 44. SSH Troubleshooting
+***This is a lab tutorial lesson***
 
 ## 45. EC2 Instance Connect
+***This is a lab tutorial lesson***
 
 ## 46. EC2 Instance Roles Demo
+***This is a lab tutorial lesson***
 
 ## 47. EC2 Instance Purchasing Options
+
+### EC2 Instances Purchasing Options
+- On-Demand Instances - short workload, predictable pricing, pay by second
+- Reserved (1 & 3 years)
+    - Reserved Instances - long workloads
+    - Convertible Reserved Instances - long workloads with flexible instances
+- Savings Plans (1 & 3 years) - commitment to an amount of usage, long workload
+- Spot Instances - short workloads, cheap, can lose instances (less reliable)
+- Dedicated Hosts - book an entire physical server, control instance placement
+- Dedicated Instances - no other customers will share your hardware
+- Capacity Reservations - reserve capacity in a specific AZ for any duration
+
+### EC2 On Demand
+- Pay for what you use:
+    - Linux or Windows - billing per second, after the first minute
+    - All other operating systems - billing per hour
+- Has the highest cost but no upfront payment
+- No long-term commitment
+- Recommended for short-term and un-interrupted workloads, where you can't predict how the application will behave
+
+### EC2 Reserved Instances
+- Up to 72% discount compared to On-demand
+- You reserve a specific instance attributes (Instance Type, Region, Tenancy, OS)
+- Reservation Period - 1 year (+ discount) or 3 years (+++ discount)
+- Payment Options - No Upfront (+), Partial Upfront (++), All Upfront (+++)
+- Reserved Instance's Scope - Regional or Zonal (reserve capacity in an AZ)
+- Recommended for steady-state usage applications (think database)
+- You can buy and sell in the Reserved Instance Marketplace
+- Convertible Reserved Instance
+    - Can change the EC2 instance type, instance family, OS, scope and tenancy
+    - Up to 66% discount
+
+### EC2 Savings Plans
+- Get a discount based on long-term usage (up to 72% - same as RIs)
+- Commit to a certain type of usage ($10/hour for 1 or 3 years)
+- Usage beyond EC2 Savings Plans is billed at the On-Demand price
+- Locked to a specific instance family & AWS region (e.g., M5 is us-east-1)
+- Flexible across:
+    - Instance Size (e.g., m5.xlarge, m5.2xlarge)
+    - OS (e.g., Linux, Windows)
+    - Tenancy (Host, Dedicated, Default)
+
+### EC2 Spot Instances
 
 ## 48. Shared Responsibility Model for EC2
 
