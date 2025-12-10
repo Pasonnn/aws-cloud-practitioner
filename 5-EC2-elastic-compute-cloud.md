@@ -234,6 +234,52 @@
     - Tenancy (Host, Dedicated, Default)
 
 ### EC2 Spot Instances
+- Can get a discount of up to 90% compared to On-demand
+- Instances that you can "lose" at any point of time if your max price is less than the current spot price
+- The MOST cost-efficient instances in AWS
+- Useful for workloads that are resilent to failure
+    - Batch jobs
+    - Data analysis
+    - Image processing
+    - Any distributed workloads
+    - Workloads with a flexible start and end time
+- Not suitable for critical jobs or databases
+
+### EC2 Dedicated Hosts
+- A physical server with EC2 instance capacity fully dedicated to your use
+- Allows you to address compliance requirements and use your existing server-bound software licenses (per-socket, per-core, pe-VM software licenses)
+- Purchasing Options:
+    - On-demand - pay per second for active Dedicated Host
+    - Reserved - 1 or 3 years (No Upfront, Partial Upfront, All Upfront)
+- The most expensive option
+- Useful for software that have complicated licensing model (BYOL - Bring Your Own License)
+- Or for companies that have strong regulatory or compliance needs
+
+### EC2 Dedicated Instances
+- Instances run on hardware that's dedicated to you
+- May share hardware with other instances in same account
+- No control over instance placement (can move hardware after stop/start)
+
+![Dedicated Instances and Dedicated Hosts Comparison](assets/47-dedicated-host-vs-instance.png)
+
+### EC2 Capacity Reservations
+- Reserve On-Demand instances capacity in a specific AZ for any duration
+- You always have access to EC2 capacity when you need it
+- No time commitment (create/cancel anytime), no billing discount
+- Combine with Regional Reserved Instances and Saving Plans to benefits from billing discount
+- You're charged at On-Demand rate whether you run instances or not
+- Suitable for short-term, uninterrupted workloads that needs to be in a specific AZ
+
+### Which purchasing option is right for me
+- On demand: coming and staying in resort whenever we like, we pay the full price
+- Reserved: like planning ahead and if we plan to stay for a long time, we may get a good discount
+- Savings Plans: pay a certain amount per hour for certain period and stay in any room type (e.g., King, Suit, Sea View, ...)
+- Spot instances: the hotel allows people to bid for the empty rooms and the highest bidder keeps the rooms. You can get kicked out at anytime
+- Dedicated Hosts: We book an entire building of the resort
+- Capacity Reservations: you book a room for a period with full price even you do not stay in it
+
+### Price Comparison - Example: m4.large - us-east-1
+![Price Comparison of M4 Large in us-east-1](assets/47-price-comparison.png)
 
 ## 48. Shared Responsibility Model for EC2
 
