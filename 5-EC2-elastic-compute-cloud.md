@@ -282,5 +282,12 @@
 ![Price Comparison of M4 Large in us-east-1](assets/47-price-comparison.png)
 
 ## 48. Shared Responsibility Model for EC2
+![Shared Responsibility Model for EC2](assets/48-shared-responsibility-model-for-ec2.png)
 
 ## 49. EC2 Summary
+- EC2 Instance: AMI (OS) + Instance Size (CPU + RAM) + Storage + security groups + EC2 User Data
+- Security Groups: Firewall attached to the EC2 instance
+- EC2 User Data: Script launched at the first start of an instance
+- SSH: start a terminal into our EC2 Instances (port 22)
+- EC2 Instance Role: link to IAM roles
+- Purchasing Options: On-Demand, Spot, Reserved (Standard + Convertible), Dedicated Host, Dedicated Instance
