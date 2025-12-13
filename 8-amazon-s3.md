@@ -230,30 +230,115 @@
 ![us-east-1 S3 Storage Classes Price Comparison](assets/82-s3-storage-classes-example.png)
 
 ## 83. S3 Storage Classes Hands On
-
+***This is a lab tutorial lesson***
 
 ## 84. S3 Express One Zone
 
+- High performance, single Availability Zone storage class
+- Objects stored in a Directory Bucket (bucket in a single AZ)
+- Handle 100,000s request per second with single-digit millisecond latency
+- Up to 10x better performance than S3 Standard (50% lower costs)
+- High Durability (99.99%) and Availability (99.95%)
+- Co-locate your storage and compute resources in the same AZ (reduces latency)
+- Use cases: latency-sensitive apps, data-intensive apps, AI & ML training, financial modeling, media processing, HPC...
+- Best integrated with SageMaker Model Training, Athena, EMR, Glue...
 
 ## 85. S3 Encryption
 
+![S3 Encryption](assets/85-s3-encryption.png)
 
 ## 86. IAM Access Analyzer for S3
 
+- Ensures that only intended people have access to your S3 buckets
+- Example: publicly accessible bucket, bucket shared with other AWS account
+- Evaluates S3 Bucket Policies, S3 ACLs, S3 Access Point Policies
+- Powered by IAM Access Analyzer
+
+![IAM Access Analyzer for S3](assets/86-iam-access-analyzer-for-s3.png)
 
 ## 87. Shared Responsibility Model for S3
 
+![Shared Responsibility Model for S3](assets/87-s3-shared-responsibility-model.png)
 
 ## 88. AWS Snow Family Overview
 
+### AWS Snowball
+- Highly-secure, portable devices to collect and process data at the edge, and migrate data into and out of AWS
+- Helps migrate up to Petabytes of data
+
+![AWS Snowball](assets/88-aws-snowball.png)
+
+### Data Migrations with Snowball
+
+![Data Migrations with Snowball](assets/88-data-migration-with-snowball.png)
+
+### Diagrams
+
+![Direct upload vs Snowball](assets/88-direct-upload-vs-snowball-s3.png)
+
+### What is Edge Computing?
+- Process data while it's being created on an edge location
+    - A truck on the roadx, a ship on the sea, a mining station underground
+- These locations may have limited internet and no access to computing power
+- We setup a Snowball Edge device to do edge computing
+    - Snowball Edge Compute Optimized (dedicated for that use case) & Storage Optimized
+    - Run EC2 Instances or Lambda functions at the edge
+- Use cases: preprocess data, maching learning, transcoding media
 
 ## 89. AWS Snow Family Hands On
-
+***This is a lab tutorial lesson***
 
 ## 90. AWS Snowball Edge - Pricing
 
+### Snowball Edge Pricing
+- You pay for device usage and data transfer out of AWS
+- Data transfer IN to Amazon S3 is $0.00 per GB
+- On-Demand
+    - Includes a one-time service fee per job, which includes:
+        - 10 days of usage for Snowball Edge Storage Optimized 80TB
+        - 15 days of usage for Snowball Edge Storage Optimized 210TB
+        - Shipping days are NOT counted towards the included 10 or 15 days
+        - Pay per day for any additional days
+    - Committed Upfront
+        - Pay in advance for monthly, 1-year, and 3-years of usage (Edge Computing)
+        - Up to 62% discounted pricing
 
 ## 91. Storage Gateway Overview
 
+### Hybrid Cloud for Storage
+- AWS is pushing for "hybrid cloud"
+    - Part of your infrastructure is on-premises
+    - Part of your infrastructure is on the cloud
+- This can be due to
+    - Long cloud migrations
+    - Security requirements
+    - Compliance requirements
+    - IT strategy
+- S3 is a proprietary storage technology (unlike EFS / NFS), so how do you expose the S3 data on-premise?
+
+### AWS Storage Cloud Native Options
+![AWS Storage Cloud Native Options](assets/91-aws-storage-cloud-native-options.png)
+
+### AWS Storage Gateway
+- Bridge between on-premise data and cloud data in S3
+- Hybrid storage service to allow on-premises to seamlessly use the AWS Cloud
+- Use cases: disaster recovery, backup & restore, tiered storage
+- Types of Storage Gateway
+    - File Gateway
+    - Volume Gateway
+    - Tape Gateway
+- No need to know the types at the exam
+
+![AWS Storage Gateway](assets/91-aws-storage-gateway.png)
 
 ## 92. S3 Summary
+
+### Amazon S3 - Summary
+- Buckets vs Objects: global unique name, tied to a region
+- S3 security: IAM policy, S3 Bucket Policy (public access), S3 Encryption
+- S3 Websites: host a static website on Amazon S3
+- S3 Versioning: multiple versions for files, prevent accidental deletes
+- S3 Replication: same-region or cross-region, must enable versioning
+- S3 Storage Classes: Standard, IA, IZ-IA, Intelligent, Glacier (Instant, Flexible, Deep)
+- Snowball: import data onto S3 through a physical device, edge computing
+- Storage Gateway: hybrid solution to extend on-premises storage to S3
