@@ -281,4 +281,24 @@ Aurora storage automatically grows in increments of 10GB, up to 256 TB
 
 ## 110. DMS Overview
 
+### DMS - Database Migration Service
+
+![DMS](assets/110-database-migration-service.png)
+
+- Quickly and securely migrate databases to AWS, resilient, self-healing
+- The source database remains available during the migration
+- Supports
+    - Homogenous migrations: ex Oracle to Oracle
+    - Heterogeneous migrations: ex Microsoft SQL Server to Aurora
+
 ## 111. Databases & Analytics Summary
+
+- Relational Databaes - OLTP: RDS & Aurora (SQL)
+- Differences between Multi-AZ, Read Replicas, Multi-Region
+- In-memory Database: ElastiCache
+- Key-Value Database: DynamoDB (serverless) & DAX (cache for DynamoDB)
+- Warehouse - OLAP: Redshift (SQL)
+- Hadoop Cluster: EMR
+- Athena: query data on Amazon S3 (severless & SQL)
+- QuickSight: dashbaords on your data (serverless)
+- DocumentDB: Aurora for MongoDB (JSON - NoSQL database)
