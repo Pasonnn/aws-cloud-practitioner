@@ -148,10 +148,78 @@
 
 ## 118. API Gateway Overview
 
+### Amazon API Gateway
+- Example: building a serverless API
+![Amazon API Gateway](assets/118-amazon-api-gateway.png)
+- Fully managed service for developers to easily create, publishm maintain, monitor, and secure APIs
+- Serverless and scalable
+- Supports RESTful APIs and WebSocket APIs
+- Support for security, user authentication, API throttling, API keys, monitoring...
+
 ## 119. Batch Overview
+
+### AWS Batch
+- Fully managed batch processing at any scale
+- Efficiently run 100,000s of computing batch jobs on AWS
+- A "batch" job is a job with a start and an end (opposed to continuous)
+- Batch will dynamically launch EC2 instances or Spot Instances
+- AWS Batch provisions the right amount of compute / memory
+- You submit or schedule batch jobs and AWS Batch does the rest
+- Helpful for cost optimizations and focusing less on the infrastructure
+
+### AWS Batch - Simplified Example
+
+![AWS Batch Simplified Example](assets/119-aws-batch-simplified-example.png)
+
+### Batch vs Lambda
+- Lambda
+    - Time limit
+    - Limited runtimes
+    - Limited temporary disk space
+    - Serverless
+- Batch
+    - No time limit
+    - Any runtime as long as it's packaged as a Docker image
+    - Rely on EBS/instance store for disk space
+    - Relies on EC2 (can be managed by AWS)
 
 ## 120. Lightsail Overview
 
+### Amazon Lightsail
+- Virtual servers, storage, databases, and networking
+- Low and predictable pricing
+- Simpler alternative to using EC2, RDS, ELB, EBS, Route 53...
+- Great for people with little cloud experience!
+- Can setup notifications and monitoring of your Lightsail resources
+- Use cases
+    - Simple web applications (has templates for LAMP, Nginx, MEAN, Node.js...)
+    - Websites (templates for WordPress, Magento, Plesk, Joomla)
+    - Dev / Test environment
+- Has high availability but no auto-scaling, limited AWS integration
+
 ## 121. Lightsail Hands On
+***This is a lab tutorial lesson***
 
 ## 122. Other Compute - Summary
+
+### Other Compute - Summary
+- Docker: container technology to run applications
+- ECS: run Docker containers on EC2 instances
+- Fargate:
+    - Run Docker containers without provisioning the infrastructure
+    - Serverless offering (no EC2 instances)
+- ECR: Private Docker Images Repository
+- Batch: run batch jobs on AWS across managed EC2 instances
+- Lightsail: predictable and low pricing for simple application & DB stacks
+
+### Lambda Summary
+- Lambda is Serverless, Function as a Service, seamless scaling, reactive
+- Lambda Billing:
+    - By the time run x by the RAM provisioned
+    - By the number of invocations
+- Language Support: many programming languages except (arbitrary) Docker
+- Invocation time: up to 15 minutes
+- Use cases:
+    - Create Thumbnails for images uploaded onto S3
+    - Run a Serverless cron job
+- API Gateway: expose Lambda functions as HTTP API
