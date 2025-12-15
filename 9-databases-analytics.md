@@ -256,6 +256,8 @@ Aurora storage automatically grows in increments of 10GB, up to 256 TB
 - 1000s times faster & 1/10th the cost of relational databases
 - Built-in time series analytics functions (helps you identify patterns in your data in near real-time)
 
+![Time Series Chart](assets/107-time-series-chart.png)
+
 ## 108. Managed Blockchain Overview
 
 ## 109. Glue Overview
