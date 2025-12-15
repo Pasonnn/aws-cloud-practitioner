@@ -260,6 +260,14 @@ Aurora storage automatically grows in increments of 10GB, up to 256 TB
 
 ## 108. Managed Blockchain Overview
 
+### Amazon Managed Blockchain
+- Blockchain makes it possible to build applications where multiple parties can execute transactions without the need for a trusted, central authority
+- Amazon Managed Blockchain is a managed service to
+    - Join public blockchain networks
+    - Or create your own scalable private network
+- Compatible with the frameworks Hyperledger Fabric & Ethereum
+
+
 ## 109. Glue Overview
 
 ## 110. DMS Overview
