@@ -60,9 +60,37 @@
 
 ## 114. Amazon EKS
 
+### Amazon EKS
+- EKS = Elastic Kubernetes Service
+- Allows you to launch managed Kubernetes clusters on AWS
+- Kubernetes is an open-source system for management, deployment, and scaling of containerized apps (Docker)
+- Containers can be hosted on:
+    - EC2 instances
+    - Fargate (Serverless)
+- Kubernetes is cloud-agnostic (can be used in any cloud - Azure, GCP...)
+
+![Amazon EKS](assets/114-amazon-eks.png)
+
 ## 115. Serverless Introduction
 
+### What's serverless?
+- Serverless is a new paradigm in which the developers don't have to manage servers anymore...
+- They just deploy code
+- They just deploy... functions!
+- Initially... Serverless == FaaS (Function as a Service)
+- Serverless was pioneered by AWS Lambda but now also includes anything that's managed: "databases, messaging, storage, etc"
+- Serverless does not mean there are no servers... it means you just don't manage / provision / see them
+
+### So far in this course...
+
+![Services](assets/115-services.png)
+
 ## 116. Lambda Overview
+
+### Why AWS Lambda
+
+**Amazon EC2**
+-
 
 ## 117. Lambda Hands On
 
