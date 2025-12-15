@@ -127,9 +127,40 @@ Aurora storage automatically grows in increments of 10GB, up to 256 TB
 
 ## 98. DynamoDB Overview
 
+### DynamoDB
+- Fully Managed Highly available with replication across 3 AZ
+- NoSQL database - not a relational database
+- Scales to massive workloads, distributed "serverless" database
+- Millions of requests per second, trillions of row, 100s of TB of storage
+- Fast and consistent in performance
+- Single-digit millisecond latency - low latency retrieval
+- Integrated with IAM for security, authorization and administration
+- Low cost and auto scaling capabilities
+- Standard & Infrequent Access (IA) Table Class
+
+### DynamoDB - type of data
+- DynamoDB is a key/value database
+
+![DynamoDB - Type of Data](assets/98-dynamodb-type-of-data.png)
+
+### DynamoDB Accelerator - DAX
+- Fully Managed in-memory cache for DynamoDB
+- 10x performance improvement - single-digit millisecond latency to microseconds latency - when accessing your DynamoDB tables
+- Secure, highly scalable & highly available
+- Difference with ElastiCache at the CCP level: DAX is only used for and is integrated with DynamoDB, while ElastiCache can be used for other databases
+
+![DAX](assets/98-dax.png)
+
 ## 99. DynamoDB Hands On
+***This is a lab tutorial lesson***
 
 ## 100. DynamoDB Global Tables
+
+### DynamoDB - Global Tables
+- Make a DynamoDB table accessible with low latency in multiple-region
+- Active-Active replication (read/write to any AWS Region)
+
+![DynamoDB - Global Table](assets/100-dynamodb-global-table.png)
 
 ## 101. Redshift Overview
 
