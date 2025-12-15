@@ -174,6 +174,8 @@
 
 ***This is a lab tutorial lesson***
 
+> chmod 0400 key.pem
+> ssh -i key.pem ec2-user@public.ip.v4.address
 
 ## 42. How to SSH using Windows
 ***This is a lab tutorial lesson***
