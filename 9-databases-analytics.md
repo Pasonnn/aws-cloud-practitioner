@@ -88,8 +88,29 @@ Aurora storage automatically grows in increments of 10GB, up to 256 TB
 ![Amazon Aurora Serverless](assets/94-amazon-aurora-serverless.png)
 
 ## 95. RDS Hands On
+***This is a lab tutorial lesson***
 
 ## 96. RDS Deployments Options
+
+### RDS Deployments: Read Replicas, Multi-AZ
+- Read Replicas:
+    - Scale the read workload of your DB
+    - Can create up to 15 Read Replicas
+    - Data is only written to the main DB
+![RDS Read Replicas](assets/96-rds-read-replicas.png)
+
+- Multi-AZ:
+    - Failover in case of AZ outage (high availability)
+    - Data is only read/written to the main database
+    - Can only have 1 other AZ as failover
+![RDS Multi-AZ](assets/96-rds-multi-az.png)
+
+### RDS Deployments: Multi-Region
+- Multi-Region (Read Replica)
+    - Disaster recovery in case of region issue
+    - Local performance for global reads
+    - Replication cost
+![RDS Multi-Region](assets/96-rds-multi-region.png)
 
 ## 97. ElastiCache Overview
 
