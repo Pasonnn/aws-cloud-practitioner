@@ -267,8 +267,17 @@ Aurora storage automatically grows in increments of 10GB, up to 256 TB
     - Or create your own scalable private network
 - Compatible with the frameworks Hyperledger Fabric & Ethereum
 
-
 ## 109. Glue Overview
+
+### AWS Glue
+- Managed extract, transform, and load (ETL) service
+- Useful to prepare and transform data for analytics
+- Fully serverless service
+
+![AWS Glue Flow](assets/109-amazon-glue-flow.png)
+
+- Glue Data Catalog: catalog of datasets
+    - can be used by Athena, Redshift, EMR
 
 ## 110. DMS Overview
 
