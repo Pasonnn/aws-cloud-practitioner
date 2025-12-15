@@ -183,15 +183,52 @@ Aurora storage automatically grows in increments of 10GB, up to 256 TB
 
 ![Redshift Serverless](assets/101-redshift-serverless.png)
 
-
-
 ## 102. EMR Overview
+
+### Amazon EMR
+- EMR stands for "Elastic MapReduce"
+- EMR helps creating Hadoop clusters (Big Data) to analyze and process vast amount of data
+- The clusters can be made of hundreds of EC2 instances
+- Also supports Apache Spark, HBase, Presto, Flink...
+- EMR takes care of all the provisioning and configuration
+- Auto-scaling and integrated with Spot instances
+- Use cases: data processing, machine learning, web indexing, big data...
 
 ## 103. Athena Overview
 
+### Amazon Athena
+- Serverless query service to perform analytics against S3 objects
+- Use standard SQL language to query the files
+- Supports CSV, JSON, ORC, Avro, and Parquet (built on Presto)
+- Pricing: $5.00 per TB of data scanned
+- Use compressed or columnar data for cost-savings (less scan)
+- Use cases: Business intelligence / analytics / reporting, analyze & query VPC Flow Logs, ELB Logs, CloudTrail trails, etc...
+- Exam Tips: analyze data in S3 using serverless SQL, using Athena
+
+![Amazon Athena](assets/103-amazon-athena.png)
+
 ## 104. QuickSight Overview
 
+### Amazon QuickSight
+- Serverless machine learning-powered business intelligence service to create interactive dashboards
+- Fast, automatically scalable, embeddable, with per-session pricing
+- Use cases:
+    - Business analytics
+    - Building visualizations
+    - Perform ad-hoc analytics
+    - Get business insights using data
+- Integrated with RDS, Aurora, Athena, Redshift, S3...
+
 ## 105. DocumentDB Overview
+
+### DocumentDB
+- Aurora is an "AWS-implementation" of PostgreSQL/MySQL...
+- DocumentDB is the same for MongoDB (which is a NoSQL database)
+- MongoDB is used to store, query, and index JSON data
+- Similar "deployment concepts" as Aurora
+- Fully Managed, highly available with replication across 3 AZ
+- DocumentDB storage automatically grows in increments of 10GB
+- Automatically scales to workloads with millions of requests per seconds
 
 ## 106. Neptune Overview
 
