@@ -23,7 +23,7 @@
     - Flexibility: easy to evolve data model
     - Scalability: designed to scale-out by using distributed clusters
     - High-performance: optmized for a specific data models and have flexible schemas for building modern applications
-- Examples: key-valuem document, graph, in-memory, search databases
+- Examples: key-value document, graph, in-memory, search databases
 
 ### NoSQL data example: JSON
 - JSON = JavaScript Object Notation
