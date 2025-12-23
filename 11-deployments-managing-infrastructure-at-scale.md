@@ -164,9 +164,47 @@
 
 ## 132. CodePipeline Overview
 
+### AWS CodePipeline
+
+- Orchestrate the different steps to have the code automatically pushed to production
+    - Code => Build => Test => Provision => Deploy
+    - Basis for CICD (Continuous Integration & Continuous Delivery)
+- Benefits:
+    - Fully managed, compatible with CodeCommit, CodeBuild, CodeDeploy, Elastic Beanstalk, CloudFormation, GitHub, 3rd-party services (GitHub...) & custom plugins
+    - Fast delivery & rapid updates
+
+![AWS CodePipeline](assets/132-code-pipeline.png)
+
 ## 133. CodeArtifact Overview
 
+### AWS CodeArtifact
+- Software packages depend on each other to be built (also called code dependencies), and new ones are created
+- Storing and retrieving these dependencies is called artifact management
+- Traditionally you need to setup your own artifact management system
+- CodeArtifact is a securem scalable, and cost-effective artifact management for software development
+- Works with common dependency management tools such as Maven, Gradle, npm, yarn, twine, pip, and NuGet
+- Developers and CodeBuild can then retrieve dependencies straight from CodeArtifact
+
 ## 134. Systems Manager (SSM) Overview
+
+### AWS Systems Manager (SSM)
+- Helps you manage your EV2 and On-Premises systems at scale
+- Another Hybrid AWS service
+- Get operational insights about the state of your infrastructure
+- Suite of 10+ products
+- Most important features are:
+    - Patching automation for enhanced compliance
+    - Run commands across an entire fleet of servers
+    - Store parameter configuration with the SSM Parameter Store
+- Works for Linux, MacOS, and Raspberry Pi OS (Raspbian)
+
+### How Systems Manager works
+- We need to install the SSM agent onto the systems we control
+- Installed by default on Amazon Linux AMI & some Ubuntu AMI
+- If an instance can't be controlled with SSM, it's probably an issue with the SSM agent
+- Thanks to the SSM, we can run commands, patch & configure our servers
+
+![How System Manager Works](assets/134-how-systems-manager-works.png)
 
 ## 135. SSM Session Manager
 
