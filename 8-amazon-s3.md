@@ -3,11 +3,13 @@
 ## 72. S3 Overview
 
 ### Section Introduction
-- Amazon S3 is one of the main building blocks of AWS
-- It's advertised as "infinitely scaling" storage
-- Many website use Amazon S3 as a backbone
-- Many AWS services use Amazon S3 as an integration as well
-- We-ll have a step-by-step approach to S3
+
+**Amazon S3** (Simple Storage Service) is one of the main building blocks of AWS:
+
+- **It's advertised as "infinitely scaling" storage** - can store virtually unlimited amounts of data
+- **Many websites use Amazon S3 as a backbone** - for storing images, videos, and static content
+- **Many AWS services use Amazon S3 as an integration** as well - S3 integrates with many other AWS services
+- We'll have a step-by-step approach to S3
 
 ### Amazon S3 Use cases
 - Backup and storage
@@ -21,33 +23,43 @@
 - Static website
 
 ### Amazon S3 - Buckets
-- Amazon S3 allows people to store objects (files) in "buckets" (directories)
-- Buckets must have a globally unique name (across all regions all accounts)
-- Buckets are defined at the region level
-- S3 looks like a global service but buckets are created in a region
-- Naming convention
-    - No uppercase, No underscore
-    - 3-63 characters long
-    - Not an IP
-    - Must start with lowercase letter or number
-    - Must NOT start with the prefix xn--
-    - Must NOT end with the suffix -s3alias
+
+**Amazon S3** allows people to store **objects (files) in "buckets"** (like directories):
+
+- **Buckets must have a globally unique name** (across all regions, all accounts) - like a domain name
+- **Buckets are defined at the region level** - you choose which region when creating a bucket
+- **S3 looks like a global service but buckets are created in a region** - each bucket exists in a specific region
+
+**Naming Convention** (important to follow):
+    - **No uppercase, No underscore** - use lowercase letters, numbers, and hyphens only
+    - **3-63 characters long**
+    - **Not an IP** address format
+    - **Must start with lowercase letter or number**
+    - **Must NOT start with the prefix** `xn--`
+    - **Must NOT end with the suffix** `-s3alias`
+
+> S3 buckets are like top-level folders that contain your files. The globally unique name requirement means if someone else has a bucket named "my-bucket", you can't use that name - even in a different region or account. This is because S3 bucket names are used in URLs (like `https://my-bucket.s3.amazonaws.com`), so they need to be unique globally, similar to domain names. When you create a bucket, you choose a region, and that's where the bucket (and its objects) will be stored. This is important for data residency requirements and latency - choose a region close to your users. The naming restrictions ensure compatibility with DNS and various AWS services that reference buckets by name.
 
 ### Amazon S3 - Objects
-- Objects (files) have a Key
-- The key is the FULL path:
-    - s3://my-bucket/my_file.txt
-    - s3://my-bucket/my_folder|/another_folder/my_file.txt
-- The key is composed of prefix + object name
-    - s3://my-bucket/my_folder|/another_folder/my_file.txt
-- There's no concept of "directories" within buckets (although the UI will trick you to think otherwise)
-- Just keys with very long names that contain slashes ("/")
-- Object values are the content of the body:
-    - Max. Object Size is 5TB (5000GB)
-    - If uploading more than 5GB, must use "multi-part upload"
-- Metadata (list of text key/value pairs - system or user metadata)
-- Tags (Unicode key / value pair - up to 10) - useful for security / lifecycle
-- Version ID (if versioning is enabled)
+
+**Objects (files) in S3** have several important properties:
+
+- **Objects have a Key** - this is the unique identifier for the object
+- **The key is the FULL path**:
+    - `s3://my-bucket/my_file.txt`
+    - `s3://my-bucket/my_folder/another_folder/my_file.txt`
+- **The key is composed of prefix + object name**
+    - In `s3://my-bucket/my_folder/another_folder/my_file.txt`, the prefix is `my_folder/another_folder/` and the object name is `my_file.txt`
+- **There's no concept of "directories" within buckets** (although the UI will trick you to think otherwise)
+    - **Just keys with very long names that contain slashes ("/")** - the slashes are part of the key name, not actual folders
+- **Object values are the content of the body**:
+    - **Max. Object Size is 5TB (5000GB)**
+    - **If uploading more than 5GB, must use "multi-part upload"** - breaks large files into parts
+- **Metadata** (list of text key/value pairs - system or user metadata) - like file properties
+- **Tags** (Unicode key/value pair - up to 10) - useful for security, lifecycle management, and cost allocation
+- **Version ID** (if versioning is enabled) - tracks different versions of the same object
+
+> Understanding S3's flat structure is crucial. Unlike a traditional file system with actual folders, S3 is a flat namespace - it's just a collection of objects with unique keys. The "folders" you see in the S3 console are just a UI convenience - they're really just objects whose keys contain slashes. For example, if you upload a file and the key is "photos/vacation/beach.jpg", S3 doesn't create "photos" and "vacation" folders. It just stores one object with that key. However, the console groups objects by their prefix (the part before the last slash) to make navigation easier. This flat structure makes S3 extremely scalable - there's no directory tree to traverse, just direct key lookups. The 5TB object size limit is massive - most files are much smaller. For files larger than 5GB, you must use multi-part upload, which breaks the file into chunks, uploads them in parallel (faster), and then combines them. This is also more reliable - if one part fails, you only need to retry that part, not the entire file.
 
 ## 73. S3 Hands On
 ***This is a lab tutorial lesson***
@@ -55,16 +67,25 @@
 ## 74. S3 Security: Bucket Policy
 
 ### Amazon S3 - Security
-- User-Based
-    - IAM Policies - which API calls should be allowed for a specific user from IAM
-- Resource-Based
-    - Bucket Policies - bucket wide rules from the S3 console - allows cross account
-    - Object Access Control List (ACL) - finer grain (can be disabled)
-    - Bucket Access COntrol List (ACL) - less common (can be disabled)
-- Note: an IAM principal can access an S3 object if
-    - The user IAM permissions ALLOW it OR the resource policy ALLOWS it
-    - AND there's no explicit DENY
-- Encryption: encrypt objects in Amazon S3 using encryption keys
+
+**S3 Security** uses multiple layers of access control:
+
+**User-Based**:
+    - **IAM Policies** - which API calls should be allowed for a specific user from IAM
+    - Controls what actions users can perform (GetObject, PutObject, DeleteObject, etc.)
+
+**Resource-Based**:
+    - **Bucket Policies** - bucket-wide rules from the S3 console - allows cross-account access
+    - **Object Access Control List (ACL)** - finer grain control (can be disabled)
+    - **Bucket Access Control List (ACL)** - less common (can be disabled)
+
+**Important Note**: An IAM principal can access an S3 object if:
+    - The user IAM permissions **ALLOW** it **OR** the resource policy **ALLOW** it
+    - **AND** there's no explicit **DENY**
+
+**Encryption**: Encrypt objects in Amazon S3 using encryption keys - protects data at rest
+
+> S3 security follows a "whitelist" model with explicit deny override. If either an IAM policy or a bucket policy allows access, the user can access the object - unless there's an explicit deny. This is important: a deny always wins. For example, if your IAM policy allows access to all S3 buckets, but a bucket policy explicitly denies your user, you won't be able to access that bucket. This allows for flexible security models - you can grant broad permissions via IAM for most buckets, but use bucket policies to restrict access to specific sensitive buckets. Bucket policies are particularly powerful because they can grant cross-account access - allowing users from other AWS accounts to access your bucket. This is useful for sharing data between organizations or allowing third-party services to access your S3 data. Encryption adds another layer - even if someone gains access to your objects, they can't read them without the encryption keys.
 
 ### S3 Bucket Policies
 - JSON based policies
@@ -159,15 +180,20 @@
 ## 82. S3 Storage Classes Overview
 
 ### S3 Storage Classes
-- Amazon S3 Standard - General Purpose
-- Amazon S3 Standard - Infrequent Access (IA)
-- Amazon S3 One Zone - Infrequent Access
-- Amazon S3 Glacier Instant Retrieval
-- Amazon S3 Glacier Flexible Retrieval
-- Amazon S3 Glacier Deep Archive
-- Amazon S3 Intelligent Tiering
 
-- Can move between classes manually or using S3 Lifecycle configurations
+**S3 offers multiple storage classes** optimized for different access patterns and cost requirements:
+
+1. **Amazon S3 Standard** - General Purpose
+2. **Amazon S3 Standard - Infrequent Access (IA)**
+3. **Amazon S3 One Zone - Infrequent Access**
+4. **Amazon S3 Glacier Instant Retrieval**
+5. **Amazon S3 Glacier Flexible Retrieval**
+6. **Amazon S3 Glacier Deep Archive**
+7. **Amazon S3 Intelligent Tiering**
+
+**You can move between classes manually or using S3 Lifecycle configurations** - automatically transition objects to cheaper storage classes as they age
+
+> S3 Storage Classes are like different types of storage boxes - some are easily accessible but expensive (like a filing cabinet in your office), while others are cheaper but take longer to access (like a storage unit across town). S3 Standard is like your office filing cabinet - fast access, always available, but more expensive. S3 Standard-IA is like a nearby storage unit - still accessible quickly, but cheaper because you don't access it often. Glacier classes are like deep archive storage - very cheap, but you might need to wait hours to retrieve files. The key is matching your access patterns to the right storage class. If you access files frequently, use Standard. If you access them once a month, use Standard-IA. If you're archiving data you might never need, use Glacier Deep Archive. S3 Lifecycle policies can automatically move objects between classes based on age - for example, move objects to Standard-IA after 30 days, then to Glacier after 90 days. This optimizes costs automatically without manual intervention.
 
 ### S3 Durability and Availability
 - Durability
@@ -211,14 +237,19 @@
     - Minimum storage duration of 180 days
 
 ### S3 Intelligent-Tiering
-- Small monthly monitoring and auto-tiering fee
-- Moves objects automatically between Access Tiers based on usage
-- There are no retrieval charges in S3 Intelligent-Tiering
-- Frequent Access tier (automatic): default tier
-- Infrequent Access tier (automatic): objects not accessed for 30 days
-- Archive Instant Access tier (automatic): objects not accessed for 90 days
-- Archive Access tier (optional): configurable from 90 days to 700+ days
-- Deep Archive Access tier (optional): config. from 180 days to 700+ days
+
+**S3 Intelligent-Tiering** is a storage class that **automatically optimizes costs** by moving objects between access tiers:
+
+- **Small monthly monitoring and auto-tiering fee** - pays for itself through savings
+- **Moves objects automatically between Access Tiers based on usage** - no manual intervention needed
+- **There are no retrieval charges in S3 Intelligent-Tiering** - unlike Glacier classes
+- **Frequent Access tier (automatic)**: Default tier - for recently accessed objects
+- **Infrequent Access tier (automatic)**: Objects not accessed for 30 days - automatically moved here
+- **Archive Instant Access tier (automatic)**: Objects not accessed for 90 days - automatically moved here
+- **Archive Access tier (optional)**: Configurable from 90 days to 700+ days
+- **Deep Archive Access tier (optional)**: Configurable from 180 days to 700+ days
+
+> S3 Intelligent-Tiering is like having an intelligent filing system that automatically organizes your files based on how often you use them. Files you access frequently stay in the "Frequent Access" tier (like S3 Standard). If you don't touch a file for 30 days, it automatically moves to the "Infrequent Access" tier (cheaper). After 90 days of no access, it moves to "Archive Instant Access" (even cheaper, but still retrievable in milliseconds). You can optionally enable deeper archive tiers for objects that haven't been accessed for even longer. The beauty is that it's all automatic - you don't need to think about it. If you suddenly need an archived file, Intelligent-Tiering retrieves it instantly (unlike Glacier, which has retrieval delays). There's a small monthly fee per object for the monitoring service, but this is usually offset by the savings from automatic tiering. Intelligent-Tiering is perfect if you're not sure about your access patterns or want to "set it and forget it" - just enable it and let AWS optimize your storage costs automatically.
 
 ### S3 Storage Classes Comparison
 
@@ -277,13 +308,18 @@
 ![Direct upload vs Snowball](assets/88-direct-upload-vs-snowball-s3.png)
 
 ### What is Edge Computing?
-- Process data while it's being created on an edge location
-    - A truck on the roadx, a ship on the sea, a mining station underground
-- These locations may have limited internet and no access to computing power
-- We setup a Snowball Edge device to do edge computing
-    - Snowball Edge Compute Optimized (dedicated for that use case) & Storage Optimized
-    - Run EC2 Instances or Lambda functions at the edge
-- Use cases: preprocess data, maching learning, transcoding media
+
+**Edge Computing** means **processing data while it's being created on an edge location**:
+
+- **Examples of edge locations**:
+    - A truck on the road, a ship on the sea, a mining station underground
+- **These locations may have limited internet and no access to computing power**
+- **We set up a Snowball Edge device to do edge computing**:
+    - **Snowball Edge Compute Optimized** (dedicated for that use case) & Storage Optimized
+    - **Run EC2 Instances or Lambda functions at the edge**
+- **Use cases**: Preprocess data, machine learning, transcoding media
+
+> Edge Computing brings computation closer to where data is generated, rather than sending all data to a central cloud location. Think of it like having a mini data center in a remote location. A truck collecting sensor data might have limited or expensive internet connectivity, so instead of sending all raw data to AWS (which would be slow and expensive), a Snowball Edge device on the truck can process the data locally. It can filter out irrelevant data, run machine learning models to detect anomalies, or transcode video files. Only the processed results or important data need to be sent to AWS when connectivity is available. This reduces bandwidth costs, improves response times (no need to wait for data to travel to the cloud and back), and enables real-time processing even in disconnected environments. Snowball Edge devices are essentially portable AWS data centers - they can run EC2 instances and Lambda functions, so you can deploy the same applications that run in AWS, but at the edge location.
 
 ## 89. AWS Snow Family Hands On
 ***This is a lab tutorial lesson***

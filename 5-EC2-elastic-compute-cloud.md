@@ -6,36 +6,46 @@
 ## 35. EC2 Basics
 
 ### Amazon EC2
-- EC2 is one of the most popular of AWS' offering
-- EC2 = Elastic Compute Cloud = Infrastructure as a Service
-- It mainly cosists in the capability of:
-    - Renting virtual machines (EC2)
-    - Storing data on virtual drives (EBS)
-    - Distributing load across machines (ELB)
-    - Scaling the services using an auto-scaling group (ASG)
-- Knowing EC2 is fundamental to understand how the Cloud works
 
-### EC2 sizing and configuration options
-- Operating System (OS): Linux, Windows or Mac OS
-- How much compute power and cores (CPU)
-- How much random-access memory (RAM)
-- How much storage space:
-    - Network-attached (EBS & EFS)
-    - Hardware (EC2 Instance Store)
-- Network card: speed of the card, Public IP address
-- Firewall rules: security group
-- Bootstrap script (configure at first launch): EC2 User Data
+**EC2** (Elastic Compute Cloud) is one of the most popular AWS offerings and represents **Infrastructure as a Service (IaaS)**.
+
+**EC2** mainly consists of the capability to:
+
+- **Renting virtual machines (EC2)** - servers in the cloud
+- **Storing data on virtual drives (EBS)** - persistent block storage
+- **Distributing load across machines (ELB)** - load balancing
+- **Scaling the services using an auto-scaling group (ASG)** - automatic scaling
+
+**Knowing EC2 is fundamental to understanding how the Cloud works** - it's the foundation of many AWS architectures.
+
+### EC2 Sizing and Configuration Options
+
+When launching an **EC2 instance**, you can configure various aspects:
+
+- **Operating System (OS)**: Linux, Windows, or Mac OS
+- **How much compute power and cores (CPU)**: Determines processing speed
+- **How much random-access memory (RAM)**: Determines how much data can be processed simultaneously
+- **How much storage space**:
+    - **Network-attached (EBS & EFS)**: Persistent storage that survives instance termination
+    - **Hardware (EC2 Instance Store)**: Temporary, high-performance storage attached directly to the instance
+- **Network card**: Speed of the network card, **Public IP address** assignment
+- **Firewall rules**: **Security group** - controls inbound and outbound traffic
+- **Bootstrap script (configure at first launch)**: **EC2 User Data** - script that runs when the instance first starts
 
 ### EC2 User Data
-- It is possible to bootstap our instances using an EC2 User Data script
-- Bootstrapping means launching commands when a machine starts
-- That script is only run one at the instance first start
-- EC2 user data is used to automate boot tasks such as:
-    - Installing updates
-    - Installing software
-    - Downloading common files from the internet
-    - Anything you can thing of
-- The EC2 User Data Script runs with the root user
+
+**EC2 User Data** allows you to **bootstrap your instances** using a script:
+
+- **Bootstrapping means launching commands when a machine starts** - automating initial setup
+- **That script is only run once at the instance first start** - not on subsequent reboots
+- **EC2 user data is used to automate boot tasks** such as:
+    - **Installing updates** - keep the system current
+    - **Installing software** - set up required applications
+    - **Downloading common files from the internet** - fetch configuration files or data
+    - **Anything you can think of** - any automation you need
+- **The EC2 User Data Script runs with the root user** - has full administrative privileges
+
+> EC2 User Data is like having a personal assistant set up your server automatically. Instead of manually logging into a new server and running commands to install software, configure settings, and download files, you write a script that does all of this automatically when the instance starts. This is incredibly powerful for automation - you can launch hundreds of identical servers, and they'll all configure themselves the same way. For example, you might use User Data to install a web server, download your application code from S3, configure the application, and start the service - all automatically. The script runs only once when the instance first boots, so it's perfect for initial setup. If you need to run commands on every boot, you'd use other methods like systemd services or cron jobs.
 
 ## 36. Create an EC2 Instance with EC2 User Data to have a Website Hands On
 
@@ -50,20 +60,33 @@
 ## 37. EC2 Instance Types Basics
 
 ### EC2 Instance Types - Overview
-- You can use different types of EC2 instances that are optimized for different use cases
-- AWS has the following naming convention: m5.2xlarge
-    - m: instance class
-    - 5: generation (AWS improves them over time)
-    - 2xlargeL size within the instance class
-- General Purpose, Compute Optimized, Memory Optimized, Accelerated Computing, Storage Optmized, HPC Optimized, Instance Features, Measuring Instance Performance
+
+**You can use different types of EC2 instances** that are optimized for different use cases.
+
+**AWS has the following naming convention**: `m5.2xlarge`
+
+- **m**: Instance class (General Purpose, Compute Optimized, etc.)
+- **5**: Generation (AWS improves them over time - newer generations are more efficient)
+- **2xlarge**: Size within the instance class (nano, micro, small, medium, large, xlarge, 2xlarge, etc.)
+
+**Instance Type Categories**:
+- **General Purpose** - balanced compute, memory, and networking
+- **Compute Optimized** - high-performance processors
+- **Memory Optimized** - large amounts of RAM
+- **Accelerated Computing** - hardware accelerators (GPUs, FPGAs)
+- **Storage Optimized** - high, sequential read/write access to large datasets
+- **HPC Optimized** - High Performance Computing workloads
 
 ### EC2 Instance Types - General Purpose
-- Great for a diversity of workloads such as web servers or code repositories
-- Balance between:
-    - Compute
-    - Memory
-    - Networking
-- In the course, we will be using the t2.micro which is a General Purpose EC2 isntance
+
+**General Purpose instances** are great for a diversity of workloads such as **web servers** or **code repositories**.
+
+They provide a **balance between**:
+    - **Compute** (CPU power)
+    - **Memory** (RAM)
+    - **Networking** (network performance)
+
+**In this course, we will be using the `t2.micro`** which is a General Purpose EC2 instance and is eligible for the AWS Free Tier.
 
 ### EC2 Instance Types - Compute Optimized
 - Great for compute-intensive tasks that require high performance processors:
@@ -121,25 +144,33 @@
 
 ### Security Groups - Good to Know
 
-- Can be attached to multiple instances
-- Locked down to a region / VPC combination
-- Does live (outside) the EC2 - if traffic is blocked the EC2 instance won't see it
-- It is good to maintain one seperate security group for SSH access
-- If your application is not accessible (time out), then it is security group issue
-- If your application gives a "connection refused" error, then it's an application error or it's not launched
-- All inbound traffic is blocked by default
-- All outbound traffic is authorised by default
+Important facts about **Security Groups**:
+
+- **Can be attached to multiple instances** - reuse the same security group across many instances
+- **Locked down to a region / VPC combination** - security groups are specific to a region and VPC
+- **Does live (outside) the EC2** - if traffic is blocked, the EC2 instance won't see it
+    - Security groups act as a firewall before traffic reaches your instance
+- **It is good to maintain one separate security group for SSH access** - makes it easier to manage SSH access separately
+- **If your application is not accessible (time out)**, then it is likely a **security group issue** - traffic is being blocked
+- **If your application gives a "connection refused" error**, then it's an **application error or it's not launched** - the security group is allowing traffic, but the application isn't responding
+- **All inbound traffic is blocked by default** - you must explicitly allow inbound traffic
+- **All outbound traffic is authorized by default** - instances can make outbound connections by default
+
+> Understanding the difference between a timeout and "connection refused" is crucial for troubleshooting. A timeout means the security group is blocking the traffic - your request never reaches the instance. "Connection refused" means the traffic reached the instance (security group allowed it), but the application isn't listening on that port or isn't running. Think of it like a building: a timeout is like the security guard at the door stopping you (security group blocking), while "connection refused" is like reaching the office door but finding it locked (application not running or not listening on that port). Security groups are stateful - if you allow inbound traffic on a port, the corresponding outbound traffic is automatically allowed for responses.
 
 ### Referencing Other Security Groups Diagram
 ![Referencing Other Security Groups Diagram](assets/38-referencing-other-security-groups-diagram.png)
 
 ### Classic Ports to Know
-- 22 = SSH (Secure Shell) = log into a linux instance
-- 21 = FTP (File Transfer Protocol) - upload files into a file share
-- 22 = SFTP (Secure File Transfer Protocol) - upload files using SSH
-- 80 = HTTP - access uncensured websites
-- 443 = HTTPS = access secured website
-- 3389 = RDP (Remote Desktop Protocol) - log into a Window instance
+
+Understanding common network ports is essential for configuring security groups:
+
+- **22 = SSH (Secure Shell)** - log into a Linux instance
+- **21 = FTP (File Transfer Protocol)** - upload files into a file share (less secure, rarely used)
+- **22 = SFTP (Secure File Transfer Protocol)** - upload files using SSH (more secure than FTP)
+- **80 = HTTP** - access unsecured websites (not encrypted)
+- **443 = HTTPS** - access secured websites (encrypted with SSL/TLS)
+- **3389 = RDP (Remote Desktop Protocol)** - log into a Windows instance
 
 ## 39. Security Groups Hands On
 ***This is a lab tutorial lesson***
@@ -205,47 +236,76 @@
 - Dedicated Instances - no other customers will share your hardware
 - Capacity Reservations - reserve capacity in a specific AZ for any duration
 
-### EC2 On Demand
-- Pay for what you use:
-    - Linux or Windows - billing per second, after the first minute
-    - All other operating systems - billing per hour
-- Has the highest cost but no upfront payment
-- No long-term commitment
-- Recommended for short-term and un-interrupted workloads, where you can't predict how the application will behave
+### EC2 On-Demand
+
+**On-Demand Instances** are the most straightforward pricing model:
+
+- **Pay for what you use**:
+    - **Linux or Windows** - billing per second, after the first minute
+    - **All other operating systems** - billing per hour
+- **Has the highest cost** but **no upfront payment** - most flexible pricing
+- **No long-term commitment** - start and stop anytime
+- **Recommended for**:
+    - Short-term and uninterrupted workloads
+    - Applications where you can't predict how the application will behave
+    - Testing and development
+    - Applications with unpredictable workloads
 
 ### EC2 Reserved Instances
-- Up to 72% discount compared to On-demand
-- You reserve a specific instance attributes (Instance Type, Region, Tenancy, OS)
-- Reservation Period - 1 year (+ discount) or 3 years (+++ discount)
-- Payment Options - No Upfront (+), Partial Upfront (++), All Upfront (+++)
-- Reserved Instance's Scope - Regional or Zonal (reserve capacity in an AZ)
-- Recommended for steady-state usage applications (think database)
-- You can buy and sell in the Reserved Instance Marketplace
-- Convertible Reserved Instance
-    - Can change the EC2 instance type, instance family, OS, scope and tenancy
-    - Up to 66% discount
+
+**Reserved Instances** provide significant cost savings for predictable workloads:
+
+- **Up to 72% discount** compared to On-Demand pricing
+- **You reserve specific instance attributes** (Instance Type, Region, Tenancy, OS)
+- **Reservation Period**:
+    - **1 year** (+ discount)
+    - **3 years** (+++ discount) - highest savings
+- **Payment Options**:
+    - **No Upfront** (+) - pay monthly
+    - **Partial Upfront** (++) - pay some upfront, rest monthly
+    - **All Upfront** (+++) - pay everything upfront, highest discount
+- **Reserved Instance's Scope**:
+    - **Regional** - can be used across Availability Zones in a region
+    - **Zonal** - reserve capacity in a specific Availability Zone
+- **Recommended for steady-state usage applications** (think database, long-running applications)
+- **You can buy and sell in the Reserved Instance Marketplace** - if your needs change
+- **Convertible Reserved Instance**:
+    - **Can change the EC2 instance type, instance family, OS, scope and tenancy**
+    - **Up to 66% discount** - less discount but more flexibility
+
+> Reserved Instances are like signing a lease for an apartment instead of paying daily hotel rates. If you know you'll need a server for at least a year, you can commit to that and get a significant discount. The longer the commitment (3 years vs 1 year) and the more you pay upfront (All Upfront vs No Upfront), the bigger the discount. However, you're locked into specific instance types and regions. Convertible Reserved Instances offer more flexibility - you can change instance types if your needs change - but with a smaller discount. Reserved Instances are perfect for production databases, web servers with steady traffic, or any application you know will run continuously for at least a year.
 
 ### EC2 Savings Plans
-- Get a discount based on long-term usage (up to 72% - same as RIs)
-- Commit to a certain type of usage ($10/hour for 1 or 3 years)
-- Usage beyond EC2 Savings Plans is billed at the On-Demand price
-- Locked to a specific instance family & AWS region (e.g., M5 is us-east-1)
-- Flexible across:
-    - Instance Size (e.g., m5.xlarge, m5.2xlarge)
-    - OS (e.g., Linux, Windows)
-    - Tenancy (Host, Dedicated, Default)
+
+**Savings Plans** offer a more flexible alternative to Reserved Instances:
+
+- **Get a discount based on long-term usage** (up to 72% - same as Reserved Instances)
+- **Commit to a certain amount of usage** ($10/hour for 1 or 3 years)
+- **Usage beyond EC2 Savings Plans is billed at the On-Demand price** - you're not locked to a specific instance
+- **Locked to a specific instance family & AWS region** (e.g., M5 family in us-east-1)
+- **Flexible across**:
+    - **Instance Size** (e.g., m5.xlarge, m5.2xlarge) - can use any size in the family
+    - **OS** (e.g., Linux, Windows) - can switch between operating systems
+    - **Tenancy** (Host, Dedicated, Default) - can change tenancy models
+
+> Savings Plans are like buying a monthly pass for public transportation instead of individual tickets. You commit to spending a certain amount per hour (e.g., $10/hour), and as long as you use instances from the same family (e.g., M5) in the same region, you get the discount. If you use more than your commitment, the excess is billed at On-Demand rates. The key advantage over Reserved Instances is flexibility - you can use any size instance (m5.small, m5.large, m5.xlarge) and switch between Linux and Windows, as long as they're in the M5 family. This is great if your workload varies in size but stays within the same instance family. For example, you might use m5.large during the day and m5.xlarge at night, and both count toward your Savings Plan commitment.
 
 ### EC2 Spot Instances
-- Can get a discount of up to 90% compared to On-demand
-- Instances that you can "lose" at any point of time if your max price is less than the current spot price
-- The MOST cost-efficient instances in AWS
-- Useful for workloads that are resilent to failure
-    - Batch jobs
-    - Data analysis
-    - Image processing
-    - Any distributed workloads
-    - Workloads with a flexible start and end time
-- Not suitable for critical jobs or databases
+
+**Spot Instances** offer the **most cost-efficient** option in AWS, with up to **90% discount** compared to On-Demand:
+
+- **Instances that you can "lose" at any point in time** if your max price is less than the current spot price
+- **AWS can terminate your instance with a 2-minute warning** when they need the capacity
+- **The MOST cost-efficient instances in AWS** - perfect for cost optimization
+- **Useful for workloads that are resilient to failure**:
+    - **Batch jobs** - data processing that can restart
+    - **Data analysis** - analytical workloads that can be interrupted
+    - **Image processing** - can reprocess if interrupted
+    - **Any distributed workloads** - workloads that can handle node failures
+    - **Workloads with a flexible start and end time** - not time-critical
+- **Not suitable for critical jobs or databases** - cannot tolerate interruptions
+
+> Spot Instances are like buying airline tickets at the last minute - you get a huge discount, but the airline can bump you if they need the seat. AWS has spare capacity that they're willing to sell at a discount, but if demand increases and someone is willing to pay more (or On-Demand customers need the capacity), AWS will terminate your Spot Instance with a 2-minute warning. This makes Spot Instances perfect for workloads that can handle interruptions - like processing a large dataset where if one instance dies, you can restart the job. However, they're terrible for databases or web servers that need to be always available. Many organizations use Spot Instances for 70-90% of their compute capacity, saving massive amounts of money, while keeping critical workloads on On-Demand or Reserved Instances.
 
 ### EC2 Dedicated Hosts
 - A physical server with EC2 instance capacity fully dedicated to your use
@@ -272,13 +332,33 @@
 - You're charged at On-Demand rate whether you run instances or not
 - Suitable for short-term, uninterrupted workloads that needs to be in a specific AZ
 
-### Which purchasing option is right for me
-- On demand: coming and staying in resort whenever we like, we pay the full price
-- Reserved: like planning ahead and if we plan to stay for a long time, we may get a good discount
-- Savings Plans: pay a certain amount per hour for certain period and stay in any room type (e.g., King, Suit, Sea View, ...)
-- Spot instances: the hotel allows people to bid for the empty rooms and the highest bidder keeps the rooms. You can get kicked out at anytime
-- Dedicated Hosts: We book an entire building of the resort
-- Capacity Reservations: you book a room for a period with full price even you do not stay in it
+### Which Purchasing Option is Right for Me?
+
+Here's a helpful analogy using a resort hotel:
+
+- **On-Demand**: Coming and staying in the resort whenever you like, you pay the full price
+    - Most flexible, highest cost
+    - Use for: unpredictable workloads, short-term needs
+
+- **Reserved**: Like planning ahead - if you plan to stay for a long time, you may get a good discount
+    - Commit to specific room type and duration
+    - Use for: predictable, steady workloads (databases, production servers)
+
+- **Savings Plans**: Pay a certain amount per hour for a certain period and stay in any room type (e.g., King, Suite, Sea View)
+    - More flexible than Reserved, still get discounts
+    - Use for: variable workloads within the same instance family
+
+- **Spot Instances**: The hotel allows people to bid for empty rooms, and the highest bidder keeps the rooms. You can get kicked out at any time
+    - Cheapest option, but can be interrupted
+    - Use for: fault-tolerant, flexible workloads (batch processing, data analysis)
+
+- **Dedicated Hosts**: You book an entire building of the resort
+    - Most expensive, complete control
+    - Use for: compliance requirements, software licensing needs
+
+- **Capacity Reservations**: You book a room for a period with full price even if you do not stay in it
+    - Guaranteed capacity, no discount
+    - Use for: critical workloads that must run in a specific AZ
 
 ### Price Comparison - Example: m4.large - us-east-1
 ![Price Comparison of M4 Large in us-east-1](assets/47-price-comparison.png)
