@@ -214,7 +214,7 @@
 - Secrets are encrypted using KMS
 - Mostly meant for RDS integration
 
-### Hand On
+### Hands On
 ***This is a lab tutorial lesson***
 
 ## 191. Artifact Overview
@@ -225,7 +225,7 @@
 - Artifact Agreements - Allows you to review, accept, and track the status of AWS agreements such as the Business Associate Addendum (BAA) or the Health Insurance Portability and Accountability Act (HIPAA) for an individual account or in your organization
 - Can be used to support internal audit or compliance
 
-### Hand On
+### Hands On
 ***This is a lab tutorial lesson***
 
 ## 192. GuardDuty Overview
@@ -337,11 +337,77 @@
 
 ## 198. AWS Abuse
 
+### AWS Abuse
+- Report suspected AWS resources used for abusive or illegal purpose
+- Abusive & prohibited behaviors are:
+    - Spam - receiving undesired emails from AWS-owned IP address, websites & forums spammed by AWS resources
+    - Port scanning - sending packets to your ports to discover the unsecured ones
+    - DoS or DDoS attacks - AWS-owned IP addressess attempting to overwhelm or crash your servers/softwares
+    - Intrusion attempts - logging in on your resources
+    - Hosting objectionable or copyrighted content - distributing illegal or copyrighted content without consent
+    - Distributing malware - AWS resources distributing softwares to harm computers or machines
+- Contact the AWS Abuse team: AWS abuse form, or abuse@amazonaws.com
 
 ## 199. Root User Privileges
 
+### Root user privileges
+- Root user = Account Owner (created when the account is created)
+- Has complete access to all AWS services and resources
+- Lock away your AWS account root user access keys!
+- Do not use the root account for everyday tasks, even administrative tasks
+- Actions that can be performed only by the root user:
+    - Change account settings (account name, email address, root user password, root user access keys)
+    - View certain tax invoices
+    - Close your AWS account
+    - Restore IAM user permissions
+    - Change or cancel your AWS Support plan
+    - Register as a seller in the Reserved Instance Marketplace
+    - Configure an Amazon S3 bucket to enable MFA
+    - Edit or delete an Amazon S3 bucket policy that includes an invalid VPC ID or VPC endpoint ID
+    - Sign up for GovCloud
 
 ## 200. IAM Access Analyzer
 
+### IAM Access Analyzer
+- Find out which resources are shared externally
+    - S3 Buckets
+    - IAM Roles
+    - KMS Keys
+    - Lambda Functions and Layers
+    - SQS queues
+    - Secrets Manager Secrets
+- Define Zone of Trust = AWS Account or AWS Organization
+- Access outside zone of trusts => findings
+
+![Zone of Trust](assets/200-zone-of-trust.png)
+
+### Hands On
+***This is a lab tutorial lesson***
 
 ## 201. Security & Compliance Summary
+
+### Section Summary: Security & Compliance
+- Shared Responsibility on AWS
+- Shield: Automatic DDoS Protection + 24/7 support for advanced
+- WAF: Firewall to filter incoming requests based on rules
+- KMS: Encryption keys managed by AWS
+- CloudHSM: Hardware encryption, we manage encryption keys
+- AWS Certificate Manager: provision, manage, and deploy SSL/TLS Certificates
+- Artifact: Get access to compliance reports such as PCI, ISO, etc...
+- GuardDuty: Find malicious behavior with VPC, DNS & CloudTrail Logs
+- Inspector: Find software vulnerabilities in EC2, ECR Images, and Lambda functions
+- Network Firewall: Protect VPC against network attacks
+
+- Config: Track config changes and compliance against rules
+- Macie: Find sensitive data (ex: PII data) in Amazon S3 buckets
+- CloudTrail: Track API calls made by users within account
+- AWS Security Hub: gather security findings from multiple AWS accounts
+- Amazon Detective: find the root cause of security issues or suspicious activities
+- AWS Abuse: Report AWS resources used for abusive or illegal purpose
+- Root user privileges:
+    - Change account settings
+    - Close your AWS account
+    - Change or cancel your AWS Support plan
+    - Register as a seller in the Reserved Instance Marketplace
+- IAM Access Analyzer: identify which resources are shared externally
+- Firewall Manager: manage security rules across an Organization (WAF, Shield...)
