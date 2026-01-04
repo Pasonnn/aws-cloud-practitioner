@@ -187,34 +187,153 @@
     - Cryptographic operations are performed within the CloudHSM cluster
 
 ## 188. Encryption with KMS & CloudHSM Hands On
-
+***This is a lab tutorial lesson***
 
 ## 189. AWS Certificate Manager (ACM) Overview
 
+### AWS Certificate Manager (ACM)
+- Let's you easily provision, manage, and deploy SSL/TLS Certificates
+- Used to provide in-flight encryption for websites (HTTPS)
+- Supports both public and private TLS certificates
+- Free of charge for public TLS certificates
+- Automatic TLS certificate renewal
+- Integrations with (load TLS certificates on)
+    - Elastic Load Balancers
+    - CloudFront Distributions
+    - APIs on API Gateway
+
+![ACM](assets/189-aws-certificate-manager.png)
 
 ## 190. Secrets Manager Overview
 
+### AWS Secrets Manager
+- Newer service, meant for storing secrets
+- Capability to force rotation of secrets every X days
+- Automate generation of secrets on rotation (uses Lambda)
+- Integration with Amazon RDS (MySQL, PostgreSQL, Aurora)
+- Secrets are encrypted using KMS
+- Mostly meant for RDS integration
+
+### Hand On
+***This is a lab tutorial lesson***
 
 ## 191. Artifact Overview
 
+### AWS Artifact (not really a service)
+- Portal that provides customers with on-demand access to AWS compliance documentation and AWS agreements
+- Artifact Reports - Allows you to download AWS security and compliance documents from third-party auditors, like AWS ISO certifications, Payment Card Industry (PCI), and System and Organization Control (SOC) reports
+- Artifact Agreements - Allows you to review, accept, and track the status of AWS agreements such as the Business Associate Addendum (BAA) or the Health Insurance Portability and Accountability Act (HIPAA) for an individual account or in your organization
+- Can be used to support internal audit or compliance
+
+### Hand On
+***This is a lab tutorial lesson***
 
 ## 192. GuardDuty Overview
 
+### Amazon GuardDuty
+- Intelligent Threat discovery to protect your AWS Account
+- Uses Machine Learning algorithms, anomaly detection, 3rd party data
+- One click to enable (30 days trial), no need to install software
+- Input data includes:
+    - CloudTrail Events Logs - unusual API calls, unauthorized deployments
+        - CloudTrail Management Events - unusual API calls, unauthorized deployments
+        - CloudTrail S3 Data Events - get object, list objects, delete object, ...
+    - VPC Flow Logs - unusual internal traffic, unusual IP address
+    - DNS Logs - compromised EC2 instances sending encoded data within DNS queries
+    - Optional Features - EKS Audit Logs, RDS & Aurora, EBS, Lambda, S3 Data Events...
+- Can setup EventBridge rules to be notified in case of findings
+- EventBridge rules can target AWS Lambda or SNS
+- Can protect against CryptoCurrency attacks (has a dedicated "finding" for it)
+
+### Amazon GuardDuty
+
+![Amazon Guard Duty](assets/192-amazon-guard-duty.png)
 
 ## 193. Inspector Overview
 
+### Amazon Inspector
+- Automated Security Assessments
+- For EC2 instances
+    - Leveraging the AWS System Manager (SSM) agent
+    - Analyze against unintended network accessibility
+    - Analyze the running OS against known vulnerabilities
+- For Container Images push to Amazon ECR
+    - Assessment of Container Images as they are pushed
+- For Lambda Functions
+    - Identifies software vulnerabilities in function code and package dependencies
+    - Assessment of functions as they are deployed
+
+- Reporting & integration with AWS Security Hub
+- Send findings to Amazon Event Bridge
+
+![Amazon Inspector](assets/193-amazon-inspector.png)
+
+### What does Amazon Inspector evaluate?
+- Remember: only for EC2 instances, Container Images & Lambda functions
+- Continuous scanning of the infrastructure, only when needed
+- Package vulnerabilities (EC2, ECR & Lambda) - database of CVE
+- Network reachability (EC2)
+- A risk score is associated with all vulnerabilities for prioritization
 
 ## 194. Config Overview
 
+### AWS Config
+- Helps with auditing and recording compliance of your AWS resources
+- Helps record configurations and changes overtime
+- Possibility of storing the configuration data into S3 (analyzed by Athena)
+- Questions that can be solved by AWS Config:
+    - Is there unrestricted SSH access to my security groups?
+    - Do my buckets have any public access?
+    - How has my ALB configuration changed overtime?
+- You can receive alerts (SNS notification) for any changes
+- AWS Config is a per-region service
+- Can be aggregated across regions and accounts
+
+### AWS Config Resource
+- View compliance of a resource overtime
+- View configuration of a resource overtime
+- View CloudTrail API calls if enabled
+
+### Hands On
+***This is a lab tutorial lesson***
 
 ## 195. Macie Overview
 
+### Amazon Macie
+- Amazon Macie is a fully managed data security and data privacy service that uses machine learning and pattern matching to discover and protect your sensitive data in AWS
+- Macie helps identify and alert you to sensitive data, such as personally identifiable information (PII)
+
+![Amazon Macie](assets/195-amazon-macie.png)
 
 ## 196. Security Hub Overview
 
+### AWS Security Hub
+- Central security tool to manage security across several AWS accounts and automate security checks
+- Integrated dashboards showing current security and compliance status to quickly take actions
+- Automatically aggregates alerts in predefined or personal findings formats from various AWS services & AWS partner tools:
+    - Config
+    - GuardDuty
+    - Inspector
+    - Macie
+    - IAM Access Analyzer
+    - AWS Systems Manager
+    - AWS Firewall Manager
+    - AWS Health
+    - AWS Partner Network Solutions
+- Must first enable the AWS Config Service
+
+### AWS Security Hub
+
+![AWS Security Hub](assets/196-aws-security-hub.png)
 
 ## 197. Amazon Detective Overview
 
+### Amazon Detective
+- GuardDuty, Macie, and Security Hub are used to identify potential security issues, or findings
+- Sometimes security findings require deeper analysis to isolate the root cause and take action - it's a complex process
+- Amazon Detective analyzes, investigates, and quickly identifies the root cause of security issues or suspicious activities (using ML and graphs)
+- Automatically collects and processes events from VPC Flow Logs, CloudTrail, GuardDuty and create a unified view
+- Produces visualizations with details and context to get to the root cause
 
 ## 198. AWS Abuse
 
