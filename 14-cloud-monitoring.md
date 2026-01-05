@@ -253,26 +253,31 @@
 ### Cloud Monitoring - Summary
 
 **CloudWatch** - Monitoring and Observability:
-    - **Metrics**: Monitor the performance of AWS services and billing metrics
-    - **Alarms**: Automate notification, perform EC2 action, notify to SNS based on metric
-    - **Logs**: Collect log files from EC2 instances, servers, Lambda functions...
-    - **Events (or EventBridge)**: React to events in AWS, or trigger a rule on a schedule
+
+- **Metrics**: Monitor the performance of AWS services and billing metrics
+- **Alarms**: Automate notification, perform EC2 action, notify to SNS based on metric
+- **Logs**: Collect log files from EC2 instances, servers, Lambda functions...
+- **Events (or EventBridge)**: React to events in AWS, or trigger a rule on a schedule
 
 **CloudTrail** - Audit and Compliance:
-    - **Audit API calls** made within your AWS account
-    - **CloudTrail Insights**: Automated analysis of your CloudTrail events
-    - **Enabled by default** - basic logging automatic
+
+- **Audit API calls** made within your AWS account
+- **CloudTrail Insights**: Automated analysis of your CloudTrail events
+- **Enabled by default** - basic logging automatic
 
 **X-Ray** - Distributed Tracing:
-    - **Trace requests** made through your distributed applications
-    - **Identify performance bottlenecks** and service dependencies
-    - **Visualize request flows** across microservices
+
+- **Trace requests** made through your distributed applications
+- **Identify performance bottlenecks** and service dependencies
+- **Visualize request flows** across microservices
 
 **AWS Health Dashboard** - Service Status:
-    - **Service History**: Status of all AWS services across all regions (general status)
-    - **Your Account**: AWS events that impact your infrastructure (personalized view)
+
+- **Service History**: Status of all AWS services across all regions (general status)
+- **Your Account**: AWS events that impact your infrastructure (personalized view)
 
 **Amazon CodeGuru** - Code Quality and Performance:
-    - **CodeGuru Reviewer**: Automated code reviews and static analysis
-    - **CodeGuru Profiler**: Runtime performance analysis and recommendations
-    - **ML-powered** insights for code quality and optimization
+
+- **CodeGuru Reviewer**: Automated code reviews and static analysis
+- **CodeGuru Profiler**: Runtime performance analysis and recommendations
+- **ML-powered** insights for code quality and optimization
